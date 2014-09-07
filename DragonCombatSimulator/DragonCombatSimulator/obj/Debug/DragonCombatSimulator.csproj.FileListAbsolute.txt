@@ -1,0 +1,6 @@
+C:\Users\anthonyjones\Documents\GitHub\DragonCombatSimulator\DragonCombatSimulator\DragonCombatSimulator\bin\Debug\DragonCombatSimulator.exe.config
+C:\Users\anthonyjones\Documents\GitHub\DragonCombatSimulator\DragonCombatSimulator\DragonCombatSimulator\obj\Debug\DragonCombatSimulator.csprojResolveAssemblyReference.cache
+C:\Users\anthonyjones\Documents\GitHub\DragonCombatSimulator\DragonCombatSimulator\DragonCombatSimulator\bin\Debug\DragonCombatSimulator.exe
+C:\Users\anthonyjones\Documents\GitHub\DragonCombatSimulator\DragonCombatSimulator\DragonCombatSimulator\bin\Debug\DragonCombatSimulator.pdb
+C:\Users\anthonyjones\Documents\GitHub\DragonCombatSimulator\DragonCombatSimulator\DragonCombatSimulator\obj\Debug\DragonCombatSimulator.exe
+C:\Users\anthonyjones\Documents\GitHub\DragonCombatSimulator\DragonCombatSimulator\DragonCombatSimulator\obj\Debug\DragonCombatSimulator.pdb
