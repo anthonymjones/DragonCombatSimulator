@@ -64,7 +64,6 @@ namespace DragonCombatSimulator
 
 
 
-                                                                                                                        again.
                    ");
             string name;
             // Ask user to enter their name
@@ -77,7 +76,7 @@ Doctor: 'Well " + name + @", I have some good news and some bad news.
 The good news is you're immune to the virus. The bad news is the zombies can still kill you, 
 and there's a horde about to break through that door behind you. Take this bag full of supplies, hopefully they'll help.'
 
-You open the bag. There's grenades, a shotgun, and a full syringe marked 'adrenaline'.
+You open the bag. There's grenades, a shotgun, and some syringes marked 'adrenaline'.
 The grenades are powerful, causing between 20 - 30 damage to the horde,  but there's only a 70% chance they work.
 The shotgun works every time, but it's not as powerful, causing 10 - 15 damage to the horde.
 The adrenaline will boost your health by 10 - 20 points.
@@ -93,12 +92,12 @@ You start running down the hall towards the hospital cafeteria, but the zombies 
 
 Press Enter
             ");
-           
+
             Console.ReadLine();
             //call the dragon combat game
             DragonCombat();
 
-            //keep the window open
+            //keep the console window open
             Console.ReadKey();
         }
         
@@ -116,6 +115,12 @@ Press Enter
         //delare variables for player HP, dragon HP
         int playerHP = 100;
         int dragonHP = 200;
+        
+        //let's keep track of how many times an attack or heal is used
+        int att1Count = 0;
+        int att2Count = 0;
+        int healCount = 0;
+
         //create random number generator
         Random rng = new Random();
         //neither the player or the dragon have won yet
@@ -158,7 +163,7 @@ Press Enter
                     Console.WriteLine();
                     Console.WriteLine("The grenade fizzled out. It was a dud!");
                 }
-                
+                att1Count++;
             }
             //else if their selection is 2
             else if (selectionNum == 2)
@@ -168,21 +173,30 @@ Press Enter
                 dragonHP = dragonHP - att2Dam;
                 Console.WriteLine();
                 Console.WriteLine("You blasted the zombies with your shotgun, and caused " + att2Dam + " damage to the horde!");
+                att2Count++;
             }
             //else if their selection is 3, 
             else if (selectionNum == 3)
             {
+                if (healCount > 4)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("You can't find anymore syringes. While you were looking through your bag, the zombies attack.");
+                }
+                else{
             //calculate the amount they've healed(10 - 20 HP), display to player, add the amount to player HP
                 int playerHeal = rng.Next(10, 21);
                 playerHP = playerHP + playerHeal;
                 Console.WriteLine();
-                Console.WriteLine("You plunge the syringe into your heart, and heal " + playerHeal + " points.");
+                Console.WriteLine("You plunge a syringe into your heart, and heal " + playerHeal + " points.");
+                healCount++;
+                }
             }
             else if (selectionNum == 9)
             {
                 dragonHP = dragonHP - 200;
                 Console.WriteLine();
-                Console.WriteLine("You realize that you're Superman, and take out the entire zombie horde with your heat vision.");
+                Console.WriteLine("You realize that you're Superman, and take out the entire zombie horde with your heat vision. Wait, why did you let that doctor die?");
             }
 
             if (dragonHP > 0)
@@ -216,7 +230,7 @@ Press Enter
             Console.WriteLine("Your Health:  " + playerHP); 
             Console.WriteLine("Horde Health: " + dragonHP);
             Console.WriteLine();
-
+            
 
         }
             //the game is won when the dragon has 0 or less HP, the game is lost when the player has 0 or less HP
@@ -225,12 +239,20 @@ Press Enter
                 won = true;
                 //tell the user they won
                 Console.WriteLine("You decimated the zombie horde... this time.");
+                Console.WriteLine();
+                Console.WriteLine(att1Count + " Grenades thrown");
+                Console.WriteLine(att2Count + " Shells fired");
+                Console.WriteLine(healCount + " Syringes emptied");
             }
             else if (playerHP <= 0)
             {
                 lost = true;
                 //tell the loser they lost
                 Console.WriteLine("You've been devoured by the zombie horde, and since you're immune to the virus, you're really dead.");
+                Console.WriteLine();
+                Console.WriteLine(att1Count + " Grenades thrown");
+                Console.WriteLine(att2Count + " Shells fired");
+                Console.WriteLine(healCount + " Syringes emptied");
         }
 
     }
