@@ -11,10 +11,10 @@ namespace DragonCombatSimulator
         private static string name;
         static void Main(string[] args)
         {
-            
+
             Console.WindowWidth = 160;
             Console.WindowHeight = 50;
-            
+
             Console.Title = "Zombies Must Die...";
 
             //This is the description of the game, as well as the instructions for the player.
@@ -72,14 +72,14 @@ namespace DragonCombatSimulator
             Console.Write("What's your name? ");
             // Console reads the name and prints it out
             name = Console.ReadLine();
-            
+
 
             //call the introinstruct()
             IntroInstruct();
             Console.WriteLine("Press Enter");
             Console.ReadLine();
-            
-            
+
+
             //call the dragon combat game
             ZombiesMustDie();
 
@@ -88,7 +88,7 @@ namespace DragonCombatSimulator
             //keep the console window open
             Console.ReadKey();
         }
-        
+
 
 
 
@@ -99,195 +99,195 @@ namespace DragonCombatSimulator
         //Heal will heal the player between 10 - 20 HP
         //The dragon will always respond by attacking you, it has 80% chance of hitting, and will cause between 5 - 15 damage to player
         static void ZombiesMustDie()
-    {
-        //delare variables for player HP, dragon HP
-        int playerHP = 100;
-        int hordeHP = 200;
-        
-        //let's keep track of how many times an attack or heal is used
-        int att1Count = 0;
-        int att2Count = 0;
-        int healCount = 0;
-
-        //create random number generator
-        Random rng = new Random();
-        //neither the player or the dragon have won yet
-        bool won = false;
-        bool lost = false;
-
-        
-        //create a while loop to run while still playing is true
-            while (hordeHP > 0 && playerHP > 0 && !won && !lost)
         {
-            Console.Clear();
-            //player stats bar
-            Console.WriteLine(@"_________________________________________________________________________________________________________________________________________________________
+            //delare variables for player HP, dragon HP
+            int playerHP = 100;
+            int hordeHP = 200;
+
+            //let's keep track of how many times an attack or heal is used
+            int att1Count = 0;
+            int att2Count = 0;
+            int healCount = 0;
+
+            //create random number generator
+            Random rng = new Random();
+            //neither the player or the dragon have won yet
+            bool won = false;
+            bool lost = false;
+
+
+            //create a while loop to run while still playing is true
+            while (hordeHP > 0 && playerHP > 0 && !won && !lost)
+            {
+                Console.Clear();
+                //player stats bar
+                Console.WriteLine(@"_________________________________________________________________________________________________________________________________________________________
 
   " + name + @" Health     " + playerHP + "/100                                                                                                    Horde Health     " + hordeHP + @"/200
 _________________________________________________________________________________________________________________________________________________________");
-            Console.WriteLine();
-            //have the player choose attack 1, attack 2, or heal. declare your selection variables
-            Console.WriteLine("Make your move. Throw a grenade (press 1), Fire your shotgun (press 2), Take the adrenaline (press 3)");
-            string selectionString = Console.ReadLine();
-                
+                Console.WriteLine();
+                //have the player choose attack 1, attack 2, or heal. declare your selection variables
+                Console.WriteLine("Make your move. Throw a grenade (press 1), Fire your shotgun (press 2), Take the adrenaline (press 3)");
+                string selectionString = Console.ReadLine();
+
                 int selectionNum = int.Parse(selectionString);
-                   
-            //if their selection is 1 
-            if (selectionNum == 1)
-            {
-                //there are only 6 grenades in the bag
-                if (att1Count > 5)
-                {
-                    Console.WriteLine(@" ________________________________________________________________________________________________________
-|                                                                                                        |");
-                    Console.WriteLine("  You can't find any more grenades. While you were looking through your bag, the zombies attack.");
-                    Console.WriteLine("|________________________________________________________________________________________________________|");
 
-                }
-                else
+                //if their selection is 1 
+                if (selectionNum == 1)
                 {
-                    //calculate their chance of hitting (70%)
-                    int playerHitChance = rng.Next(1, 101);
-
-                    //Attack 1 hits
-                    if (playerHitChance < 70)
+                    //there are only 6 grenades in the bag
+                    if (att1Count > 5)
                     {
-                        //calculate the amount of damage(20 - 35 HP) to the dragon, display to player, subtract amount from dragon HP
-                        int att1Dam = rng.Next(20, 36);
-                        hordeHP = hordeHP - att1Dam;
                         Console.WriteLine(@" ________________________________________________________________________________________________________
-|                                                                                                        |"); 
-                        Console.WriteLine("  The grenade hits the middle of the horde, and causes " + att1Dam + " damage to the zombies!");
+|                                                                                                        |");
+                        Console.WriteLine("  You can't find any more grenades. While you were looking through your bag, the zombies attack.");
                         Console.WriteLine("|________________________________________________________________________________________________________|");
 
+                    }
+                    else
+                    {
+                        //calculate their chance of hitting (70%)
+                        int playerHitChance = rng.Next(1, 101);
+
+                        //Attack 1 hits
+                        if (playerHitChance < 70)
+                        {
+                            //calculate the amount of damage(20 - 35 HP) to the dragon, display to player, subtract amount from dragon HP
+                            int att1Dam = rng.Next(20, 36);
+                            hordeHP = hordeHP - att1Dam;
+                            Console.WriteLine(@" ________________________________________________________________________________________________________
+|                                                                                                        |");
+                            Console.WriteLine("  The grenade hits the middle of the horde, and causes " + att1Dam + " damage to the zombies!");
+                            Console.WriteLine("|________________________________________________________________________________________________________|");
+
+                        }
+                        //didn't hit
+                        else
+                        {
+                            //tell the player they missed.
+                            Console.WriteLine(@" ________________________________________________________________________________________________________
+|                                                                                                        |");
+                            Console.WriteLine("  The grenade fizzled out. It was a dud!");
+                            Console.WriteLine("|________________________________________________________________________________________________________|");
+
+                        }
+                        att1Count++;
+                    }
+                }
+                //else if their selection is 2
+                else if (selectionNum == 2)
+                {
+                    //calculate their chance of hitting (98%)
+                    int playerShotChance = rng.Next(1, 101);
+                    if (playerShotChance < 98)
+                    {
+                        int playerCriticalChance = rng.Next(1, 101);
+                        if (playerCriticalChance < 15)
+                        {
+                            //critical hit, causes 65 damage
+                            int att2critDam = 65;
+                            hordeHP = hordeHP - att2critDam;
+                            Console.WriteLine(@" ________________________________________________________________________________________________________
+|                                                                                                        |");
+                            Console.WriteLine("  You blasted the zombies with your shotgun, and it was a CRITICAL HIT! Causing 65 damage to the horde!");
+                            Console.WriteLine("|________________________________________________________________________________________________________|");
+
+                            att2Count++;
+                        }
+                        else
+                        {
+                            //they hit, calculate the amount of damage(10 - 15 HP) to the dragon, display to player, subtract the amount from dragon HP
+                            int att2Dam = rng.Next(10, 16);
+                            hordeHP = hordeHP - att2Dam;
+                            Console.WriteLine(@" ________________________________________________________________________________________________________
+|                                                                                                        |");
+                            Console.WriteLine("  You blasted the zombies with your shotgun, and caused " + att2Dam + " damage to the horde!");
+                            Console.WriteLine("|________________________________________________________________________________________________________|");
+                            att2Count++;
+                        }
                     }
                     //didn't hit
                     else
                     {
                         //tell the player they missed.
-                        Console.WriteLine(@" ________________________________________________________________________________________________________
-|                                                                                                        |");
-                        Console.WriteLine("  The grenade fizzled out. It was a dud!");
-                        Console.WriteLine("|________________________________________________________________________________________________________|");
-
+                        Console.WriteLine(@" ___________________________________________________________________________________________________
+|                                                                                                   |");
+                        Console.WriteLine("  The shotgun misfired!");
+                        Console.WriteLine("|___________________________________________________________________________________________________|");
                     }
-                    att1Count++;
                 }
-            }
-            //else if their selection is 2
-            else if (selectionNum == 2)
-            {
-                //calculate their chance of hitting (98%)
-                int playerShotChance = rng.Next(1, 101);
-                if (playerShotChance < 98)
+                //else if their selection is 3, 
+                else if (selectionNum == 3)
                 {
-                    int playerCriticalChance = rng.Next(1, 101);
-                    if (playerCriticalChance < 15)
+                    if (healCount > 4)
                     {
-                        //critical hit, causes 65 damage
-                        int att2critDam = 65;
-                        hordeHP = hordeHP - att2critDam;
                         Console.WriteLine(@" ________________________________________________________________________________________________________
 |                                                                                                        |");
-                        Console.WriteLine("  You blasted the zombies with your shotgun, and it was a CRITICAL HIT! Causing 65 damage to the horde!");
+                        Console.WriteLine("  You can't find any more syringes. While you were looking through your bag, the zombies attack.");
                         Console.WriteLine("|________________________________________________________________________________________________________|");
-
-                        att2Count++;
                     }
                     else
                     {
-                        //they hit, calculate the amount of damage(10 - 15 HP) to the dragon, display to player, subtract the amount from dragon HP
-                        int att2Dam = rng.Next(10, 16);
-                        hordeHP = hordeHP - att2Dam;
+                        //calculate the amount they've healed(10 - 20 HP), display to player, add the amount to player HP
+                        int playerHeal = rng.Next(10, 21);
+                        playerHP = playerHP + playerHeal;
                         Console.WriteLine(@" ________________________________________________________________________________________________________
 |                                                                                                        |");
-                        Console.WriteLine("  You blasted the zombies with your shotgun, and caused " + att2Dam + " damage to the horde!");
+                        Console.WriteLine("  You plunge a syringe into your heart, and heal " + playerHeal + " points.");
                         Console.WriteLine("|________________________________________________________________________________________________________|");
-                        att2Count++;
+
+                        healCount++;
                     }
                 }
-                //didn't hit
-                else
+                else if (selectionNum == 9)
                 {
-                    //tell the player they missed.
-                    Console.WriteLine(@" ___________________________________________________________________________________________________
-|                                                                                                   |");
-                    Console.WriteLine("  The shotgun misfired!");
-                    Console.WriteLine("|___________________________________________________________________________________________________|");
-                }
-            }
-            //else if their selection is 3, 
-            else if (selectionNum == 3)
-            {
-                if (healCount > 4)
-                {
-                    Console.WriteLine(@" ________________________________________________________________________________________________________
-|                                                                                                        |"); 
-                    Console.WriteLine("  You can't find any more syringes. While you were looking through your bag, the zombies attack.");
-                    Console.WriteLine("|________________________________________________________________________________________________________|");
+                    hordeHP = hordeHP - 200;
+                    Console.WriteLine(@" ___________________________________________________________________________________________________________________________________________
+|                                                                                                                                           |");
+                    Console.WriteLine("  You realize that you're Superman, and take out the entire zombie horde with your heat vision. Wait, why did you let that doctor die?");
+                    Console.WriteLine("|___________________________________________________________________________________________________________________________________________|");
+
                 }
                 else
                 {
-                    //calculate the amount they've healed(10 - 20 HP), display to player, add the amount to player HP
-                    int playerHeal = rng.Next(10, 21);
-                    playerHP = playerHP + playerHeal;
                     Console.WriteLine(@" ________________________________________________________________________________________________________
 |                                                                                                        |");
-                    Console.WriteLine("  You plunge a syringe into your heart, and heal " + playerHeal + " points.");
+                    Console.WriteLine("  You froze. The zombies attack");
                     Console.WriteLine("|________________________________________________________________________________________________________|");
-
-                    healCount++;
                 }
-            }
-            else if (selectionNum == 9)
-            {
-                hordeHP = hordeHP - 200;
-                Console.WriteLine(@" ___________________________________________________________________________________________________________________________________________
-|                                                                                                                                           |"); 
-                Console.WriteLine("  You realize that you're Superman, and take out the entire zombie horde with your heat vision. Wait, why did you let that doctor die?");
-                Console.WriteLine("|___________________________________________________________________________________________________________________________________________|");
+                if (hordeHP > 0)
+                {
 
-            }
-            else
-            {
-                Console.WriteLine(@" ________________________________________________________________________________________________________
-|                                                                                                        |"); 
-                Console.WriteLine("  You froze. The zombies attack");
-                Console.WriteLine("|________________________________________________________________________________________________________|");
-            }
-            if (hordeHP > 0)
-            {
 
-             
-                //Horde's turn - calculate the horde chance of hitting (80%)
-                int hordeHitChance = rng.Next(1, 101);
-            //horde hit
-            if (hordeHitChance < 80)
-            {
-                //calculate the amount of damage(5 - 15 HP) to the player, display to the player, subtract amount from player HP
-                int dragDam = rng.Next(5, 16);
-                playerHP = playerHP - dragDam;
-                Console.WriteLine();
-                Console.Write("The zombies grab you and take a bite for " + dragDam + " damage!");
-                Console.WriteLine();
-            }
-            //horde missed
-            else
-            {
-                //tell the player the horde missed.
-                Console.WriteLine();
-            Console.WriteLine("The zombies slash at you, but miss!");
-            }
-            }
-            else
-            {
+                    //Horde's turn - calculate the horde chance of hitting (80%)
+                    int hordeHitChance = rng.Next(1, 101);
+                    //horde hit
+                    if (hordeHitChance < 80)
+                    {
+                        //calculate the amount of damage(5 - 15 HP) to the player, display to the player, subtract amount from player HP
+                        int dragDam = rng.Next(5, 16);
+                        playerHP = playerHP - dragDam;
+                        Console.WriteLine();
+                        Console.Write("The zombies grab you and take a bite for " + dragDam + " damage!");
+                        Console.WriteLine();
+                    }
+                    //horde missed
+                    else
+                    {
+                        //tell the player the horde missed.
+                        Console.WriteLine();
+                        Console.WriteLine("The zombies slash at you, but miss!");
+                    }
+                }
+                else
+                {
 
+                }
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine("Press Enter to continue.");
+                Console.ReadKey();
             }
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine("Press Enter to continue.");
-            Console.ReadKey();
-        }
             //the game is won when the horde has 0 or less HP, the game is lost when the player has 0 or less HP
             if (hordeHP <= 0)
             {
@@ -311,9 +311,53 @@ ________________________________________________________________________________
                 Console.WriteLine(" Shells fired:       " + att2Count);
                 Console.WriteLine(" Syringes emptied:   " + healCount);
             }
+            //game over
+            AddHighScore(playerHP);
+            DisplayHighScores();
+        }
+        static void AddHighScore(int playerScore)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Press any key.");
+            Console.ReadKey();
 
+            //create a gateway to the database
+            AnthonyEntities db = new AnthonyEntities();
 
-    }
+            //create a new highscore object
+            HighScore newHighScore = new HighScore();
+            newHighScore.DateCreated = DateTime.Now;
+            newHighScore.Game = "Dragon Slayer";
+            newHighScore.Name = name;
+            newHighScore.Score = playerScore;
+
+            //add to the database
+            db.HighScores.Add(newHighScore);
+
+            //save our changes
+            db.SaveChanges();
+        }
+        static void DisplayHighScores()
+        {
+            Console.SetWindowSize(40, 40);
+            //clear the console
+            Console.Clear();
+            //Write the High Score Text
+            Console.WriteLine();
+            Console.WriteLine("      Dragon Slayer High Scores");
+            Console.WriteLine("    *****************************");
+
+            //create a new connection to the db
+            AnthonyEntities db = new AnthonyEntities();
+            //get the high score list
+            List<HighScore> highScoreList = db.HighScores.Where(x => x.Game == "Dragon Slayer").OrderByDescending(x => x.Score).Take(10).ToList();
+
+            foreach (HighScore highScore in highScoreList)
+            {
+                Console.WriteLine("    {0}. {1} - {2} on {3}", highScoreList.IndexOf(highScore) + 1, highScore.Name, highScore.Score, highScore.DateCreated.Value.ToShortDateString());
+            }
+        }
+
         //Instructions function
         static void IntroInstruct()
         {
@@ -343,8 +387,5 @@ You start running down the hall towards the hospital cafeteria, but the zombies 
 
 
     }
-
-
-    }
-
+}
 

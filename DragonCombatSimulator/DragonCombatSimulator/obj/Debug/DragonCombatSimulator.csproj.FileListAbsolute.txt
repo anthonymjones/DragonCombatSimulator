@@ -4,3 +4,7 @@ C:\Users\anthonyjones\Documents\GitHub\DragonCombatSimulator\DragonCombatSimulat
 C:\Users\anthonyjones\Documents\GitHub\DragonCombatSimulator\DragonCombatSimulator\DragonCombatSimulator\bin\Debug\DragonCombatSimulator.pdb
 C:\Users\anthonyjones\Documents\GitHub\DragonCombatSimulator\DragonCombatSimulator\DragonCombatSimulator\obj\Debug\DragonCombatSimulator.exe
 C:\Users\anthonyjones\Documents\GitHub\DragonCombatSimulator\DragonCombatSimulator\DragonCombatSimulator\obj\Debug\DragonCombatSimulator.pdb
+C:\Users\anthonyjones\Documents\GitHub\DragonCombatSimulator\DragonCombatSimulator\DragonCombatSimulator\bin\Debug\EntityFramework.dll
+C:\Users\anthonyjones\Documents\GitHub\DragonCombatSimulator\DragonCombatSimulator\DragonCombatSimulator\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\anthonyjones\Documents\GitHub\DragonCombatSimulator\DragonCombatSimulator\DragonCombatSimulator\bin\Debug\EntityFramework.xml
+C:\Users\anthonyjones\Documents\GitHub\DragonCombatSimulator\DragonCombatSimulator\DragonCombatSimulator\bin\Debug\EntityFramework.SqlServer.xml
